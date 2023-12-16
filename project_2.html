@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <scrip src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    </script>
+
+    <style>
+      body {
+        background-color: rgb(255, 212, 137);
+      }
+
+      img {
+        border-radius: 9px;
+      }
+
+      #demo2 {
+        margin: -30px;
+        padding: 10px;
+      }
+
+      svg img {
+        background-image: url("https://centraljets.com/static/uploads/2092_8d014.jpg");
+
+      }
+
+      select {
+        padding: 5px;
+        margin-left: 20px;
+        border-radius: 16px;
+
+      }
+
+      .nav-link {
+        position: relative;
+      }
+
+      .nav-link:hover {
+        /* text-decoration: underline; */
+        /* border-bottom: 2px solid greenyellow;*/
+        color: blue;
+      }
+
+      .nav-link::after {
+        content: '';
+        opacity: 0;
+        transition: all 0.2s;
+        height: 2px;
+        width: 100%;
+        background-color: rgb(255, 47, 47);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+
+      .nav-link:hover::after {
+
+        opacity: 1;
+
+      }
+
+
+      .card {
+        transition: all 0.3s;
+      }
+
+      .card:hover {
+        transform: scale(1.10);
+      }
+
+      .wrapper {
+        max-width: 800px;
+        margin: 50px auto;
+        border-radius: 30px;
+      }
+
+      .wrapper form {
+        padding: 30px 50px;
+      }
+
+      .wrapper form .form-group {
+        padding-bottom: .5rem;
+      }
+
+      .wrapper form .option {
+        position: relative;
+        padding-left: 25px;
+        cursor: pointer;
+        display: block;
+      }
+
+      .wrapper form .option input {
+        display: none;
+      }
+
+      .wrapper form .checkmark {
+        position: absolute;
+        top: 4px;
+        left: 0;
+        height: 17px;
+        width: 17px;
+        background-color: #fff;
+        border: 1px solid #aaa;
+        border-radius: 50%;
+      }
+
+      .wrapper form .option input:checked~.checkmark:after {
+        display: block;
+      }
+
+      .wrapper form .option .checkmark:after {
+        content: "";
+        width: 7px;
+        height: 7px;
+        display: block;
+        border-radius: 50%;
+        background-color: #333;
+        position: absolute;
+        top: 48%;
+        left: 52%;
+        transform: translate(-50%, -50%) scale(0);
+        transition: 200ms ease-in-out 0s;
+      }
+
+      .wrapper form .option:hover input[type="radio"]~.checkmark {
+        background-color: #f4f4f4;
+      }
+
+      .wrapper form .option input[type="radio"]:checked~.checkmark {
+        background: #fff;
+        color: #fff;
+        transition: 300ms ease-in-out 0s;
+      }
+
+      .wrapper form .option input[type="radio"]:checked~.checkmark:after {
+        transform: translate(-50%, -50%) scale(1);
+        color: #fff;
+      }
+
+      .wrapper form a {
+        color: #333;
+      }
+
+      .wrapper form .form-control {
+        outline: none;
+        border: none;
+      }
+
+      .wrapper form .form-control:focus {
+        box-shadow: none;
+      }
+
+      .wrapper form input[type="text"]:focus::placeholder {
+        color: transparent
+      }
+
+      input[type="date"] {
+        cursor: pointer;
+      }
+
+      .wrapper form .label::after {
+        position: absolute;
+        /* background-color: #fff; */
+        top: 5px;
+        left: 0px;
+        font-size: 0.9rem;
+        margin: 0rem 0.4rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08rem;
+        font-weight: 600;
+        color: #999;
+        transition: all .2s ease-in-out;
+        transform: scale(0);
+      }
+
+      .wrapper form .label#from::after {
+        content: 'From';
+      }
+
+      .wrapper form .label#to::after {
+        content: 'To';
+      }
+
+      .wrapper form .label#depart::after {
+        content: 'Depart Date';
+      }
+
+      .wrapper form .label#return::after {
+        content: 'Return Date';
+      }
+
+      .wrapper form .label#psngr::after {
+        content: 'Traveller(s)';
+      }
+
+      .wrapper form input[type="text"]:focus~.label::after {
+        top: -15px;
+        left: 0px;
+        transform: scale(1);
+      }
+
+      .wrapper form input[type="date"]:focus~.label::after {
+        top: -15px;
+        left: 0px;
+        transform: scale(1);
+      }
+
+      /* Margin */
+      .margin {
+        margin: 2rem 0rem;
+      }
+
+      /* Media Queries */
+      @media(max-width: 575.5px) {
+        .wrapper {
+          margin: 10px;
+        }
+
+        .wrapper form {
+          padding: 20px;
+        }
+
+        .margin {
+          margin: .2rem 0rem;
+        }
+      }
+    </style>
+
+
+
+</head>
+
+<body>
+  <div class="sticky-md-top">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+          aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " aria-current="page" href="#tickit book">ticket book</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">about</a>
+            </li>
+
+
+          </ul>
+          <a href="demo.html" class="btn btn-primary" role="button" class="nav-link active" aria-current="page">login-sign
+            up</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+
+
+  <main class="main">
+    <section class="section" id="home">
+      <img src="https://wallpaperset.com/w/full/6/f/f/183412.jpg" height="700" class="d-block w-100" class="img-fluid"
+        alt="...">
+      <div id="demo2" class="carousel-caption d-none d-md-block">
+        <h5>welcome to </h5>
+        <p></p>
+      </div>
+    </section>
+    <hr>
+    <h1 class="text-center">ticket book</h1>
+
+    <section class="section" id="tickit book">
+      <div class="wrapper bg-white">
+        <form action="#">
+          <div class="form-group border-bottom d-flex align-items-center justify-content-between flex-wrap">
+            <label class="option my-sm-0 my-2">
+              <input type="radio" name="radio" checked>Return Trip
+              <span class="checkmark"></span>
+            </label>
+            <label class="option my-sm-0 my-2">
+              <input type="radio" name="radio">One Way
+              <span class="checkmark"></span>
+            </label>
+            <label class="option my-sm-0 my-2">
+              <input type="radio" name="radio">Multi-city
+              <span class="checkmark"></span>
+            </label>
+
+          </div>
+          <div class="form-group d-sm-flex margin">
+            <div class="d-flex align-items-center flex-fill me-sm-1 my-sm-0 my-4 border-bottom position-relative">
+              <input type="text" required placeholder="From" class="form-control">
+              <div class="label" id="from"></div>
+              <span class="fas fa-dot-circle text-muted"></span>
+            </div>
+            <div class="d-flex align-items-center flex-fill ms-sm-1 my-sm-0 my-4 border-bottom position-relative">
+              <input type="text" required placeholder="To" class="form-control">
+              <div class="label" id="to"></div>
+              <span class="fas fa-map-marker text-muted"></span>
+            </div>
+          </div>
+          <div class="form-group d-sm-flex margin">
+            <div class="d-flex align-items-center flex-fill me-sm1 my-sm-0 border-bottom position-relative">
+              <input type="date" required placeholder="Depart Date" class="form-control">
+              <div class="label" id="depart"></div>
+            </div>
+            <div class="d-flex align-items-center flex-fill ms-sm-1 my-sm-0 my-4 border-bottom position-relative">
+              <input type="date" required placeholder="Return Date" class="form-control">
+              <div class="label" id="return"></div>
+            </div>
+          </div>
+
+          <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+            <label class="btn btn-outline-primary" for="btnradio1">Economy</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio2">premium Economy</label>
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio3">Business</label>
+          </div>
+          <hr>
+          <div class="form-group border-bottom d-flex align-items-center position-relative">
+            <input type="text" required placeholder="Traveller(s)" class="form-control">
+            <div class="label" id="psngr"></div>
+            <span class="fas fa-users text-muted"></span>
+          </div>
+          <div class="form-group my-3">
+            <div class="btn btn-primary rounded-0 d-flex justify-content-center text-center p-3">Search Flights
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+    </section>
+
+
+    <br>
+
+    <hr>
+    <h2 class="text-center">Top 3 Popular cities</h2>
+    <br>
+    <br>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <div class="card h-100">
+          <img src="https://th.bing.com/th/id/OIP.jZ-XrF5HbnJ2ZwwE1YH6dQHaEo?pid=ImgDet&w=600&h=375&rs=1"
+            class="card-img-top" alt="...">
+          <div class="card-body">
+
+            <h5 class="card-title">Taj Mahal</h5>
+            <h6>located in delhi</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img
+            src="https://th.bing.com/th/id/R.a9d45f68b736a2b6fdd38ddda4bfbc37?rik=N7Zt3oWeWNskpA&riu=http%3a%2f%2flibratoi.net%2fwp-content%2fuploads%2f2020%2f02%2fvoyage-en-France.jpg&ehk=ga3QAQtGsVjCwd3fI0gPLiwRjTDquUROoeRSXaJeKM8%3d&risl=&pid=ImgRaw&r=0"
+            class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Eiffel Tower</h5>
+            <h6>located in paris</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="https://th.bing.com/th/id/OIP.ELsia2zeF0FA07j2XHbwgQHaE6?pid=ImgDet&w=1280&h=850&rs=1"
+            class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Tower Bridge</h5>
+            <h6>located in England</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <hr>
+    <br>
+    <h2 class="text-center">about</h2><br>
+    <section class="section" id="about">
+      <!-- Footer -->
+      <footer class="text-center text-lg-start bg-white text-muted">
+        <!-- Section: Social media -->
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+          <!-- Left -->
+          <div class="me-5 d-none d-lg-block">
+            <span>about:</span>
+          </div>
+          <!-- Left -->
+
+          <!-- Right -->
+          <div>
+            <a href="" class="me-4 link-secondary">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="" class="me-4 link-secondary">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="" class="me-4 link-secondary">
+              <i class="fab fa-google"></i>
+            </a>
+            <a href="" class="me-4 link-secondary">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="" class="me-4 link-secondary">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="" class="me-4 link-secondary">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+          <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+
+        <!-- Section: Links  -->
+        <section class="">
+          <div class="container text-center text-md-start mt-5">
+            <!-- Grid row -->
+            <div class="row mt-3">
+              <!-- Grid column -->
+
+              <!-- Grid column -->
+
+              <!-- Grid column -->
+              <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                  Useful links
+                </h6>
+                <p>
+                  <a href="#!" class="text-reset">Pricing</a>
+                </p>
+                <p>
+                  <a href="#!" class="text-reset">Settings</a>
+                </p>
+                <p>
+                  <a href="#!" class="text-reset">Orders</a>
+                </p>
+                <p>
+                  <a href="#!" class="text-reset">Help</a>
+                </p>
+              </div>
+              <!-- Grid column -->
+
+              <!-- Grid column -->
+              <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                <p><i class="fas fa-home me-3 text-secondary"></i> india,mumbai</p>
+                <p>
+                  <i class="fas fa-envelope me-3 text-secondary"></i>
+                  info@gmail.com
+                </p>
+                <p><i class="fas fa-phone me-3 text-secondary"></i> + 91 234 567 88</p>
+                <p><i class="fas fa-print me-3 text-secondary"></i> + 91 234 567 89</p>
+              </div>
+              <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+          </div>
+        </section>
+        <!-- Section: Links  -->
+
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+          © 2021:
+          <a class="text-reset fw-bold" href="https://mdbootstrap.com/">flights-booking.com</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
+      <!-- Footer -->
+    </section>
+  </main>
+
+</body>
+
+</html>
